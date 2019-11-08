@@ -5,15 +5,19 @@ import { useToasts } from "react-toast-notifications";
 import { User, Plus, LogOut } from "react-feather";
 import { Button, Link } from "../../theme";
 import Modal from "../Modal";
-
+import { device, size } from "../../breakpoints";
 import AppContext from "../../contexts/Arweave.context";
 import { storeValues, getStoredValue, clearStorageValue } from "../../utils";
 
 const HeaderFrame = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.concreteGray};
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    display: inherit;
+  }
 `;
 
 const HeaderElement = styled.div`
@@ -31,7 +35,7 @@ const Title = styled.div`
     cursor: pointer;
   }
   #link {
-    text-decoration-color: ${({ theme }) => theme.UniswapPink};
+    text-decoration-color: ${({ theme }) => theme.wisteriaPurple};
   }
   #title {
     display: inline;
@@ -54,10 +58,11 @@ const StyledInputForm = styled.div`
 `;
 
 const StyledUser = styled.div`
-  padding: 1rem;
   cursor: pointer;
 `;
-const StyledInputTitle = styled.div``;
+const StyledInputTitle = styled.div`
+  color: ${({ theme }) => theme.backgroundColor};
+`;
 
 export default function() {
   const { arweave, setloggedIn, balance } = useContext(AppContext);
@@ -121,14 +126,13 @@ export default function() {
             </Link>
           </Title>
         </HeaderElement>
-        <HeaderElement></HeaderElement>
         <HeaderElement>
           {address || address !== null ? (
             <>
               <HeaderElement>
                 <Link href="/create">
                   <Plus size={14} />
-                  New Publication
+                  New
                 </Link>
               </HeaderElement>
               <HeaderElement>
@@ -138,9 +142,9 @@ export default function() {
                   </Link>
                 </StyledUser>
                 <HeaderElement>
-                  <StyledUser onClick={clearAll}>
+                  <Link onClick={clearAll}>
                     <LogOut size={14} /> Logout
-                  </StyledUser>
+                  </Link>
                 </HeaderElement>
               </HeaderElement>
             </>

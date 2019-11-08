@@ -3,16 +3,22 @@ import styled from "styled-components";
 import Fuse from "fuse.js";
 import { useApp } from "../../contexts/App.context";
 import { Input, Link } from "../../theme";
+import { device } from "../../breakpoints";
+import { getStoredValue } from "../../utils";
 const StyledSearchWrapper = styled.div`
   width: 100%;
 `;
 
 const StyledSearchResults = styled.div`
   position: absolute;
-  top: 12rem;
+  top: 10rem;
   background: #ffffff;
-  width: 50%;
+  width: auto;
   z-index: 1000;
+  @media (max-width: ${device.tablet}) {
+    top: 9rem;
+    width: 89%;
+  }
 `;
 
 const StyledSearchResult = styled.div`
@@ -23,6 +29,7 @@ const StyledSearchResult = styled.div`
 export default function() {
   const nodeRef = createRef();
   const [{ data }] = useApp();
+  const address = getStoredValue("address");
   const fuse = new Fuse(data, {
     keys: ["title"]
   });
@@ -56,7 +63,8 @@ export default function() {
   }
 
   function onOutsideClick(e) {
-    if (nodeRef && nodeRef.current.contains(e.target) === true) return;
+    if (address && nodeRef && nodeRef.current.contains(e.target) === true)
+      return;
     setState({
       isSearching: false,
       result: [],

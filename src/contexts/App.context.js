@@ -109,7 +109,7 @@ export function useApp() {
       }
     }
 
-    return () => loadPublications();
+    loadPublications();
   }, []);
 
   return [state];

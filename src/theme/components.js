@@ -93,7 +93,7 @@ export const Input = styled.input`
   background: transparent;
   outline: none;
   border: none;
-  width: 98%;
+  width: -webkit-fill-available;
   color: ${({ theme }) => theme.textColor}
   border-radius: 0.3rem;
   border: 1px solid ${({ theme }) => theme.chaliceGray}
@@ -472,7 +472,7 @@ export const FormGroup = styled.div`
 
 export const Label = styled.label`
   margin-bottom: 0.5em;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.backgroundColor};
   display: block;
 `;
 

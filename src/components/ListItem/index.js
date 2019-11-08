@@ -3,16 +3,17 @@ import styled from "styled-components";
 import { DownloadCloud } from "react-feather";
 import { CardBody, CardWrapper, Link } from "../../theme";
 import { downloadPDF } from "../../utils";
+import { device } from "../../breakpoints";
 
 const StyledCardWrapper = styled(CardWrapper)`
-  height: ${({ height }) => (height ? height : "12rem")};
-  width: ${({ width }) => width && width};
   font-size: ${({ width }) => width && "0.9rem"};
+  margin-top: 2rem;
 `;
 
 const StyledCardBody = styled(CardBody)`
-  display: grid;
-  grid-template-rows: ${({ width }) => width && "0fr 2fr 0fr"};
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
 `;
 
 const StyledIcon = styled(DownloadCloud)`
@@ -20,9 +21,18 @@ const StyledIcon = styled(DownloadCloud)`
   margin-right: 1rem;
 `;
 
-const StyledArticlePreview = styled.div``;
+const StyledArticlePreview = styled.div`
+  text-align: justify;
+`;
 
-const StyledTitle = styled.h3``;
+const StyledTitle = styled.div`
+  font-size: 1rem;
+  font-weight: 600;
+  @media (max-width: ${device.mobileL}) {
+    font-size: 0.9rem;
+    width: 10rem;
+  }
+`;
 
 const StyledPageViews = styled.div``;
 
@@ -35,13 +45,6 @@ const StyledInfo = styled.div`
   display: flex;
 `;
 
-const StyledAvatar = styled.img`
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  align-self: center;
-`;
-
 const StyledFooter = styled.div`
   display: flex;
   justify-content: space-between;
@@ -51,11 +54,16 @@ const StyledDetails = styled.div``;
 const StyledAction = styled.div`
   align-self: flex-end;
 `;
+
+const StyledSpan = styled.span`
+  cursor: pointer;
+  margin-right: 1rem;
+`;
 export default function({ publication, height, width }) {
   return (
     <>
       {publication.title && (
-        <StyledCardWrapper height={height} width={width}>
+        <StyledCardWrapper>
           <StyledCardBody width={width}>
             <StyledTitle>{publication.title}</StyledTitle>
             <StyledArticlePreview>{publication.abstract}</StyledArticlePreview>
@@ -70,15 +78,17 @@ export default function({ publication, height, width }) {
               </StyledDetails>
               <StyledAction>
                 {publication.data && (
-                  <StyledIcon
-                    size={14}
+                  <StyledSpan
                     onClick={() =>
                       downloadPDF(publication.data, publication["Content-Type"])
                     }
-                  />
+                  >
+                    <StyledIcon size={14} />
+                    Download
+                  </StyledSpan>
                 )}
                 <Link href={`/publication/${publication.txID}`}>
-                  View Publication
+                  View details
                 </Link>
               </StyledAction>
             </StyledFooter>
