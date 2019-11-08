@@ -7,10 +7,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getStoredValue } from "../utils";
 
-const List = lazy(() => import("./List"));
-const View = lazy(() => import("./View"));
-const Create = lazy(() => import("./Create"));
-const Profile = lazy(() => import("./Profile"));
+import List from "./List";
+import View from "./View";
+import Create from "./Create";
+import Profile from "./Profile";
 
 const AppWrapper = styled.div`
   display: flex;

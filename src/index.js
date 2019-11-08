@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import App from "./pages/App";
 import ThemeProvider, { GlobalStyle } from "./theme";
@@ -21,7 +21,7 @@ const ContextProviders = ({ children }) => (
   <>
     <StorageProvider>
       <AppContextProvider>
-        <ToastProvider autoDismissTimeout={6000}>{children}</ToastProvider>	
+        <ToastProvider autoDismissTimeout={6000}>{children}</ToastProvider>
       </AppContextProvider>
     </StorageProvider>
   </>
@@ -31,10 +31,10 @@ ReactDOM.render(
   <ContextProviders>
     <Updaters />
     <ThemeProvider>
-      <BrowserRouter>
+      <HashRouter>
         <GlobalStyle />
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   </ContextProviders>,
   document.getElementById("root")

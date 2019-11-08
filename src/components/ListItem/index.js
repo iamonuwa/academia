@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { DownloadCloud } from "react-feather";
-import { CardBody, CardWrapper, Link } from "../../theme";
+import { CardBody, CardWrapper } from "../../theme";
 import { downloadPDF } from "../../utils";
 import { device } from "../../breakpoints";
 
@@ -87,7 +88,7 @@ export default function({ publication, height, width }) {
                     Download
                   </StyledSpan>
                 )}
-                <Link href={`/publication/${publication.txID}`}>
+                <Link to={`/publication/${publication.txID}`}>
                   View details
                 </Link>
               </StyledAction>

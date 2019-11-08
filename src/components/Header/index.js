@@ -1,11 +1,11 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { darken } from "polished";
 import { useToasts } from "react-toast-notifications";
 import { User, Plus, LogOut } from "react-feather";
-import { Button, Link } from "../../theme";
+import { Button } from "../../theme";
 import Modal from "../Modal";
-import { device, size } from "../../breakpoints";
 import AppContext from "../../contexts/Arweave.context";
 import { storeValues, getStoredValue, clearStorageValue } from "../../utils";
 
@@ -121,7 +121,7 @@ export default function() {
       <HeaderFrame>
         <HeaderElement>
           <Title>
-            <Link id="link" href="/">
+            <Link id="link" to="/">
               <h1 id="title">Academia</h1>
             </Link>
           </Title>
@@ -130,14 +130,14 @@ export default function() {
           {address || address !== null ? (
             <>
               <HeaderElement>
-                <Link href="/create">
+                <Link to="/create">
                   <Plus size={14} />
                   New
                 </Link>
               </HeaderElement>
               <HeaderElement>
                 <StyledUser>
-                  <Link href={`/academia/${address}`}>
+                  <Link to={`/academia/${address}`}>
                     <User size={14} /> {arweave.ar.winstonToAr(balance)} AR
                   </Link>
                 </StyledUser>

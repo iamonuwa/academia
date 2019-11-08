@@ -1,8 +1,9 @@
 import React, { createRef, useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
 import Fuse from "fuse.js";
 import { useApp } from "../../contexts/App.context";
-import { Input, Link } from "../../theme";
+import { Input } from "../../theme";
 import { device } from "../../breakpoints";
 import { getStoredValue } from "../../utils";
 const StyledSearchWrapper = styled.div`
@@ -79,7 +80,7 @@ export default function() {
         <StyledSearchResults>
           {state.result.map((result, index) => (
             <StyledSearchResult key={index}>
-              <Link href={`/publication/${result.txID}`}>{result.title}</Link>
+              <Link to={`/publication/${result.txID}`}>{result.title}</Link>
             </StyledSearchResult>
           ))}
         </StyledSearchResults>

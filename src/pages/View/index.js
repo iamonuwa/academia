@@ -140,10 +140,12 @@ function View(props) {
             &nbsp; Download Publication
           </StyledButton>
           &nbsp;
-          <StyledButton onClick={() => setVisible(true)}>
-            <Coffee size={14} />
-            &nbsp;Make Donation
-          </StyledButton>{" "}
+          {address && (
+            <StyledButton onClick={() => setVisible(true)}>
+              <Coffee size={14} />
+              &nbsp;Make Donation
+            </StyledButton>
+          )}
         </>
       )}
       <Modal open={visible} size="md" onClose={() => setVisible(false)}>
