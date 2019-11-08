@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { darken, transparentize } from "polished";
 import Toggle from "react-switch";
 
-import { Link } from "../../theme";
+import { ExternalLink } from "../../theme";
 import { useDarkModeManager } from "../../contexts/LocalStorage.context";
 
 const FooterFrame = styled.div`
@@ -76,9 +76,9 @@ export default function Footer() {
     <FooterFrame>
       <FooterElement>
         <Title>
-          <Link id="link" href="#">
+          <ExternalLink id="link" href="https://github.com/iamonuwa/academia">
             <h1 id="title">Code</h1>
-          </Link>
+          </ExternalLink>
         </Title>
       </FooterElement>
 
