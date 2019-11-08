@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { ToastProvider } from 'react-toast-notifications'
+import { ToastProvider } from "react-toast-notifications";
 import App from "./pages/App";
 import ThemeProvider, { GlobalStyle } from "./theme";
 import StorageProvider, {
   Updater as StorageUpdater
 } from "./contexts/LocalStorage.context";
+import AppContextProvider from "./contexts/App.context";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -19,7 +20,9 @@ const Updaters = () => (
 const ContextProviders = ({ children }) => (
   <>
     <StorageProvider>
-      <ToastProvider autoDismissTimeout={6000}>{children}</ToastProvider>
+      <AppContextProvider>
+        <ToastProvider autoDismissTimeout={6000}>{children}</ToastProvider>	
+      </AppContextProvider>
     </StorageProvider>
   </>
 );
