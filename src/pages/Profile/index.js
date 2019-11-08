@@ -8,12 +8,6 @@ import Loader from "../../components/Loader";
 import { getStoredValue } from "../../utils";
 import { APP_NAME } from "../../constants";
 
-const GridContainer = styled.div`
-  display: grid;
-  margin: 3rem 0;
-  grid-template-columns: repeat(3, 1fr);
-`;
-
 const StyledHeading = styled(StyledTitle)`
   font-weight: 600;
   font-size: 1rem;
@@ -35,7 +29,7 @@ export default function() {
   useEffect(() => {
     async function loadMyPublications() {
       setState({ isLoading: true });
-      let query = and(equals("author", address), equals("App-Name", APP_NAME));
+      let query = and(equals("owner", address), equals("App-Name", APP_NAME));
       const { data } = await arweave.api.post(`arql`, query);
       if (data.length > 0) {
         for (let i in data) {
@@ -70,20 +64,11 @@ export default function() {
         {state.isLoading ? (
           <Loader />
         ) : (
-          state.publications.map((publication, index) => {
-            return (
-              <>
-                <GridContainer>
-                  <ListItem
-                    height="15rem"
-                    width="20rem"
-                    key={index}
-                    publication={publication}
-                  />
-                </GridContainer>
-              </>
-            );
-          })
+          <>
+            {state.publications.map((publication, index) => (
+              <ListItem key={index} publication={publication} />
+            ))}
+          </>
         )}
       </>
     </StyledWrapper>

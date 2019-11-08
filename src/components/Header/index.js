@@ -2,17 +2,16 @@ import React, { useState, useRef, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { darken } from "polished";
 import { useToasts } from "react-toast-notifications";
-import { User, Plus, LogOut, Search } from "react-feather";
-import { Link, Button } from "../../theme";
+import { User, Plus, LogOut } from "react-feather";
+import { Button, Link } from "../../theme";
 import Modal from "../Modal";
 
 import AppContext from "../../contexts/Arweave.context";
 import { storeValues, getStoredValue, clearStorageValue } from "../../utils";
 
 const HeaderFrame = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.concreteGray};
 `;
@@ -23,7 +22,6 @@ const HeaderElement = styled.div`
   min-width: 0;
   display: flex;
   align-items: center;
-  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -64,7 +62,6 @@ const StyledInputTitle = styled.div``;
 export default function() {
   const { arweave, setloggedIn, balance } = useContext(AppContext);
   const [loginModal, setLoginModal] = useState(false);
-  const wallet = getStoredValue("wallet");
   const address = getStoredValue("address");
   const { addToast } = useToasts();
   const fileRef = useRef(null);
@@ -82,7 +79,6 @@ export default function() {
           const address = await arweave.wallets.jwkToAddress(data);
           const wallet = await arweave.wallets.generate();
           await getCurrentBalance(address, wallet);
-          console.log(wallet);
           await storeValues({ address, wallet: JSON.stringify(wallet) });
           addToast("Login successful", {
             appearance: "success"
@@ -126,7 +122,6 @@ export default function() {
           </Title>
         </HeaderElement>
         <HeaderElement></HeaderElement>
-
         <HeaderElement>
           {address || address !== null ? (
             <>
@@ -135,10 +130,6 @@ export default function() {
                   <Plus size={14} />
                   New Publication
                 </Link>
-              </HeaderElement>
-              <HeaderElement>
-                <Search size={14} />
-                Search
               </HeaderElement>
               <HeaderElement>
                 <StyledUser>

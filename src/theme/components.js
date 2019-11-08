@@ -98,7 +98,7 @@ export const Input = styled.input`
   border-radius: 0.3rem;
   border: 1px solid ${({ theme }) => theme.chaliceGray}
   ::placeholder {
-    color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.textColor};
   }
 `;
 
