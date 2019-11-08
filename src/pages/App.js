@@ -43,7 +43,7 @@ const BodyWrapper = styled.div`
 
 const Body = styled.div`
   margin-top: 2rem;
-  //   max-width: 35rem;
+  max-width: 50rem;
   width: 90%;
 `;
 
@@ -62,7 +62,6 @@ export default function() {
   const [wallet, setWallet] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [balance, setBalance] = useState(0);
-  const [publications, setPublications] = useState([]);
   let address = getStoredValue("address");
 
   return (
@@ -73,11 +72,7 @@ export default function() {
             arweave,
             wallet,
             loggedIn,
-            publications,
             balance,
-            setPublications: publication => {
-              publications.push(publication);
-            },
             setloggedIn: (loggedIn, wallet, balance) => {
               setWallet(wallet);
               setLoggedIn(loggedIn);
